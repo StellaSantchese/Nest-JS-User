@@ -5,10 +5,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './users/config/typeorm.config';
-import { UserService } from './users/users.service';
 import { User } from './users/entities/user.entity';
 import { NotificationsModule } from './notifications/notifications.module';
-import { NotificationSubscribers } from './events/notification.subscribers';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 
 
@@ -16,8 +14,8 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
   imports: [UsersModule,
     TypeOrmModule.forFeature([User]),
     TypeOrmModule.forRoot(typeOrmConfig),
-    NotificationsModule, NotificationSubscribers,EventEmitterModule.forRoot()],
+    NotificationsModule,EventEmitterModule.forRoot()],
   controllers: [AppController],
-  providers: [AppService,UserService],
+  providers: [AppService],
 })
 export class AppModule {}

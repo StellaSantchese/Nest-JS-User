@@ -1,15 +1,23 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/entities/user.entity";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
 export class Notification { 
     
   @PrimaryGeneratedColumn()
-  id: number;
+  id: null;
+
+  @Column()
+  hour: number;
+
+  @Column()
+  minute: number;
 
   @Column()
   message: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
+
+  @ManyToMany(() => User, user => user.notifications)
+  user: User;
 }

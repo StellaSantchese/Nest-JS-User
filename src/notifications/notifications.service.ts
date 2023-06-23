@@ -5,24 +5,22 @@ import { Repository } from 'typeorm';
 import { Notification } from './entities/notification.entity';
 
 @Injectable()
-export class NotificationService {
+export class NotificationsService {
   constructor(
     @InjectRepository(Notification)
-    private readonly notificationRepository: Repository<Notification>,
+    private readonly notificationRepository: Repository<Notification>
   ) {}
 
 
-  createUser(user:Notification):Observable<Notification>{
+  createNotification(notification:Notification):Observable<Notification>{
     
-    return from(this.notificationRepository.save(user));
+    return from(this.notificationRepository.save(notification));
 }
 
 findAll(): Observable<Notification[]>
 {
     return from(this.notificationRepository.find());
 }
-
-
 
 }
 
